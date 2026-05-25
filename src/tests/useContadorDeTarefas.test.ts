@@ -1,11 +1,16 @@
+import { renderHook } from '@testing-library/react'
 import { useContadorDeTarefas } from '@/hooks/useContadorDeTarefas'
 
 describe('useContadorDeTarefas', () => {
   it('deve retornar a quantidade correta', () => {
-    const tarefas = ['A', 'B', 'C']
+    const { result } = renderHook(() =>
+      useContadorDeTarefas([
+        'A',
+        'B',
+        'C',
+      ])
+    )
 
-    const total = useContadorDeTarefas(tarefas)
-
-    expect(total).toBe(3)
+    expect(result.current).toBe(3)
   })
 })
